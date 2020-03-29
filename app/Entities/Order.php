@@ -22,6 +22,6 @@ class Order extends Model
 
     public function payment()
     {
-        return $this->hasOne('App\Entities\Payment');
+        return $this->hasOne('App\Entities\Payment', 'id');
     }
 }

@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return Order::with('products', 'payment')->get();
     }
 
     /**
@@ -46,7 +46,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return Order::where('id', $order->id)->with('products', 'payment')->get();
     }
 
     /**

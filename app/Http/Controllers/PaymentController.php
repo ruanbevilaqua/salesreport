@@ -14,7 +14,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        return Payment::all();
     }
 
     /**
@@ -46,7 +46,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return Payment::where('id', $payment->id)->with('order')->get();
     }
 
     /**

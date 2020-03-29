@@ -18,6 +18,6 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Entities\Order');
+        dd($this->belongsToMany('App\Entities\Order') );
     }
 }
