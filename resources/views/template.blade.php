@@ -25,8 +25,27 @@
             <a class="dropdown-item" href="{{url('order/export')}}">Exportar dados</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Produtos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{url('product')}}">Listar produtos</a>
+            <a class="dropdown-item" href="{{url('product/create')}}">Novo produto</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{url('product/export')}}">Exportar dados</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Clientes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{url('client')}}">Listar clientes</a>
+            <a class="dropdown-item" href="{{url('client/create')}}">Novo cliente</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{url('client/export')}}">Exportar dados</a>
+            </div>
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

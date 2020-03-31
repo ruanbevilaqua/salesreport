@@ -14,8 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
-         return Client::all();
+        $clients = Client::all();
+        return view('client.index', ['clients' => $clients]);
+
     }
 
     /**
@@ -25,7 +26,11 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $client = new Client;
+        
+        $fields = $client->getFillable();
+        
+        return view('client.create', ['fields' => $fields]);
     }
 
     /**
@@ -36,7 +41,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return Client::create($request->all());
+        $client = Client::create($request->all());
+
+        return redirect()->action('ClientController@index');
     }
 
     /**
@@ -47,7 +54,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return Client::find($client);
+        return redirect()->action('ClientController@index');
     }
 
     /**

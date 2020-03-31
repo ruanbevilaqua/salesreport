@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        $products = Product::all();
+        return view('product.index', ['products' => $products]);
     }
 
     /**
@@ -23,8 +24,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $product = new Product;
+        
+        $fields = $product->getFillable();
+        
+        return view('product.create', ['fields' => $fields]);
     }
 
     /**
@@ -35,7 +40,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return Product::create($request->all());
+        $product = Product::create($request->all());
+        
+        return redirect()->action('ProductController@index');
     }
 
     /**
@@ -46,7 +53,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return Product::find($product);
+        return redirect()->action('ProductController@index');
     }
 
     /**
