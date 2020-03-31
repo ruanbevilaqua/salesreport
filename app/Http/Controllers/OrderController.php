@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::with('products', 'payment', 'client')->get();
+        // A lista será ordenada pelas mais recentes primeiro par a facilitar a visualização em testes
+        $orders = Order::with('products', 'payment', 'client')->orderBy('created_at', 'DESC')->get();
+        return view('order.index', ['orders' => $orders]);
     }
 
     /**
@@ -48,7 +50,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return Order::where('id', $order->id)->with('client', 'products', 'payment')->get();
+        $order = Order::where('id', $order->id)->with('client', 'products', 'payment')->get()->first();
+        return view('order.show', ['order' => $order]);
     }
 
     /**

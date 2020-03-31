@@ -19,11 +19,14 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::resource('order', 'OrderController');
     Route::resource('payment', 'PaymentController');
     Route::resource('product', 'ProductController');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('welcome');
 });
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 Route::get('/logout', function () {
     if(isset($_COOKIE['jwt']))
@@ -35,7 +38,5 @@ Route::get('/logout', function () {
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
