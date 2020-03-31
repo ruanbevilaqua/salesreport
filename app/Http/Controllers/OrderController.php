@@ -7,6 +7,9 @@ use App\Entities\Client;
 use App\Entities\Product;
 use App\Entities\Payment;
 use Illuminate\Http\Request;
+use League\Csv\Writer;
+use Carbon\Carbon;
+
 
 class OrderController extends Controller
 {
@@ -126,7 +129,24 @@ class OrderController extends Controller
     public function export()
     {
         $orders = Order::with('products', 'payment', 'client')->orderBy('created_at')->get();
-        dd($orders);
+        
+        $csv = Writer::createFromFileObject(new \SplTempFileObject());
+        $csv->insertOne(['Data Hora', 'Nome do cliente', 'Itens no pedido', 'Valor do pagamento', 'Detalhes do pagamento']);
+        foreach($orders as $order)
+        {
+            $csv->insertOne([
+                $order->created_at, 
+                $order->client->name, 
+                count($order->products), 
+                isset($order->payment->total_value) 
+                    ? $order->payment->total_value : '',
+                isset($order->payment->payment_type) 
+                ? $order->payment->payment_type : '',
+            ]);
+        }
+
+        $csv->output('pedidos_'.Carbon::now().'.csv');
+        
     }
 
 }
