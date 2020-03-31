@@ -37,14 +37,28 @@
 </head>
 <body style="background-color: #e7e7e7;">
     <div class="container center">
-        <div class="card" style="margin-top: 50px">
+        <div class="card" style="margin-top: 50px" id="printable">
             <div class="card-body">
                 @yield('content')
             </div>
         </div>
+        <button class="btn btn-primary" onClick="printContent()">Imprimir</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        function printContent()
+        {
+            var contentToPrint = document.getElementById('printable').innerHTML;
+            var originalPage = document.body.innerHTML;
+            
+            document.body.innerHTML = contentToPrint;
+
+            window.print();
+
+            document.body.innerHTML = originalPage;
+        }
+    </script>
 </body>
