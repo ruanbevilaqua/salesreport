@@ -16,9 +16,10 @@
 </div>
 
 @if(isset($products))
-    <div class="card-deck mb-3 text-center">
+    <div class="row text-center">
     @foreach($products as $product)
-        <div class="card mb-4 box-shadow">
+    <div class="col-sm-4 py-2">
+        <div class="card mb-4 box-shadow" style="width: 18rem;">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">{{$product->name}}</h4>
           </div>
@@ -31,6 +32,7 @@
             </div>
           </div>
         </div>
+    </div>
     @endforeach
     </div>
 
