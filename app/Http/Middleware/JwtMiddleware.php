@@ -20,6 +20,12 @@ class JwtMiddleware extends BaseMiddleware
     public function handle($request, Closure $next)
     {
         try {
+            // Ou pegar pela requisição ou pelo cookie. Aqui decidi pegar pelo cookie
+            if(isset($_COOKIE['jwt']))
+            {   
+                // Se o cookie está definido, add jwt no header da requsição
+                $request->headers->set('Authorization', 'Bearer '.$_COOKIE['jwt']);
+            }
             $user = JWTAuth::parseToken()->authenticate();
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){

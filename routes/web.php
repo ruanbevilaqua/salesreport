@@ -13,14 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => ['jwt.verify']], function() {
+    // Rotas protegidas aqui
+    Route::resource('client', 'ClientController');
+    Route::resource('order', 'OrderController');
+    Route::resource('payment', 'PaymentController');
+    Route::resource('product', 'ProductController');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/logout', function () {
+    if(isset($_COOKIE['jwt']))
+    {
+        unset($_COOKIE['jwt']);
+        setcookie('jwt', '', time() - 3600, '/'); // empty value and old timestamp
+    }
+});
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('client', 'ClientController');
-
-Route::resource('order', 'OrderController');
-
-Route::resource('payment', 'PaymentController');
-
-Route::resource('product', 'ProductController');

@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Rotas desprotegidas aqui
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@authenticate');
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+    // Rotas protegidas aqui
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    
 });

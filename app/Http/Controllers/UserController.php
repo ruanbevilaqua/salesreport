@@ -22,8 +22,8 @@ class UserController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        return response()->json(compact('token'));
+        // Vai um cookie? Define um cookie com o token com validade de 10 minutos acessado apenas por http
+        return response()->json(compact('token'))->cookie('jwt', $token, 10, false, false, false, true);
     }
 
     public function register(Request $request)
