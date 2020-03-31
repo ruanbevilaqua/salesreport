@@ -24,6 +24,8 @@ Não esqueça de alterar informações como o nome do banco de dados, o usuário
 
 Até o final dessa implementação decidirei se fornecerei as migrations e seeders para a criação do banco de dados com algumas informações pré definidas ou se disponibilizarei o dump do banco de dados.
 
+(Update 1. Decidi disponibilizar o dump do banco de dados. Está no aquivo dump-banco-order-report.sql.)
+
 ## Sobre as funcionalidades disponíveis / funcionalidades exibidas
 
 O sistema possui as seguintes entidades: User, Client, Order, Payment, Product.
