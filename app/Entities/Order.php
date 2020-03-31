@@ -24,4 +24,9 @@ class Order extends Model
     {
         return $this->hasOne('App\Entities\Payment', 'id');
     }
+
+    public function client()
+    {
+        return $this->belongsTo('App\Entities\Client');
+    }
 }

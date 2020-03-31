@@ -35,7 +35,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Payment::create($request->all());
     }
 
     /**
@@ -69,7 +69,8 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $payment = Payment::findOrFail($payment->id);
+        $payment->update($request->all());
     }
 
     /**
@@ -80,6 +81,9 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment = Payment::findOrFail($payment->id);
+        $payment->delete();
+
+        return $payment;
     }
 }

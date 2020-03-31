@@ -15,4 +15,9 @@ class Client extends Model
         'phone', 
         'email'
     ];
+
+    public function orders()
+    {
+        return $this->hasMany('App\Entities\Order');
+    }
 }

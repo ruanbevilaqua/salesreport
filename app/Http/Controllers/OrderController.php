@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::with('products', 'payment')->get();
+        return Order::with('products', 'payment', 'client')->get();
     }
 
     /**
@@ -35,7 +35,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create($request->all());
+        $orderWithDetails = Order::find($order->id)->with('client')->get();
+        return $orderWithDetails;
     }
 
     /**
@@ -46,7 +48,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return Order::where('id', $order->id)->with('products', 'payment')->get();
+        return Order::where('id', $order->id)->with('client', 'products', 'payment')->get();
     }
 
     /**
@@ -69,7 +71,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order = Order::findOrFail($order->id);
+        $order->update($request->all());
+
+        return $order;
     }
 
     /**
@@ -80,6 +85,9 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order = Order::findOrFail($order->id);
+        $order->delete();
+
+        return $order;
     }
 }
