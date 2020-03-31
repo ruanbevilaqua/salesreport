@@ -62,7 +62,9 @@
             "@php artisan key:generate --ansi"
         ],
         "compile": [
-            "chmod -R 777 /"
+            "chmod -R 777 /bootstrap",
+            "chmod -R 777 /public",
+            "chmod -R 777 /storage"
           ]
     }
 }
