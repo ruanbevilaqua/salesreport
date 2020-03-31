@@ -3,11 +3,11 @@
 ## Sobre este projeto
 
 Este projeto foi desenvolvido para atender a seguinte user history: 
-1. um cliente pretende visualizar algumas informações de vendas
+1. um cliente pretende visualizar algumas informações de vendas.
 2. o cliente deve ter acesso utilizando usuário e senha.
 3. pode ser possível imprimir ou exportar informações. 
 
-## Para rodar este porjeto
+## Para rodar este projeto
 
 Esse projeto foi implementado utilizando Laravel 6, então utilize:
 
