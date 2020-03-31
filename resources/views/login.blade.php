@@ -8,9 +8,9 @@
 <body style="background-color: #e7e7e7;">
 <div class="container center" style="margin-top: 100px">
 
-    @if(session('status'))
+    @if(isset($status))
     <div class="alert alert-danger" role="alert">
-    {{ session('status') }}
+    {{ $status }}
     </div>
     @endif
     <form action="{{ url('/api/login') }}" method="post" >

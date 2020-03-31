@@ -35,6 +35,7 @@ Route::get('/logout', function () {
         unset($_COOKIE['jwt']);
         setcookie('jwt', '', time() - 3600, '/'); // empty value and old timestamp
     }
+    return redirect()->route('login');
 });
 
 

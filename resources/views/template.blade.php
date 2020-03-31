@@ -49,7 +49,7 @@
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-        <a class="btn btn-outline-danger my-2 my-sm-0 text-white" type="submit">Sair do sistema</a>
+        <a href="{{url('logout')}}" class="btn btn-outline-danger my-2 my-sm-0 text-white" type="submit">Sair do sistema</a>
         </form>
     </div>
     </nav>
