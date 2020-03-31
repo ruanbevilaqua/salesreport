@@ -22,7 +22,7 @@ class Order extends Model
 
     public function payment()
     {
-        return $this->hasOne('App\Entities\Payment', 'id');
+        return $this->hasOne('App\Entities\Payment', 'id', 'payment_id');
     }
 
     public function client()
