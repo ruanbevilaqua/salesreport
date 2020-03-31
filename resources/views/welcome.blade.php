@@ -19,7 +19,7 @@
         <div class="col-md-4">
         <h2>Exportar dados</h2>
         <p>Você também pode exportar os dados para um arquivo no formato CSV.</p>
-        <p>Acesse a entidade que você deseja no menu e .</p>
+        <p>Acesse a entidade que você deseja no menu e clique em exportar dados.</p>
         <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
         </div>
     </div>
