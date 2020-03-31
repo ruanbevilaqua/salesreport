@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     // Rotas protegidas aqui
+    Route::get('/client/export', 'ClientController@export');
     Route::resource('client', 'ClientController');
     Route::get('/order/export', 'OrderController@export');
     Route::resource('order', 'OrderController');
     Route::resource('payment', 'PaymentController');
+    Route::get('/product/export', 'ProductController@export');
     Route::resource('product', 'ProductController');
     Route::get('/', function () {
         return view('welcome');

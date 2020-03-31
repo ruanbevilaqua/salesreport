@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Entities\Product;
 use Illuminate\Http\Request;
+use League\Csv\Writer;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -51,7 +53,7 @@ class ProductController extends Controller
      * @param  \App\Entities\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($product)
     {
         return redirect()->action('ProductController@index');
     }
@@ -94,5 +96,25 @@ class ProductController extends Controller
         $product->delete();
 
         return $product;
+    }
+
+    public function export()
+    {
+        $products = Product::all();
+        
+        $csv = Writer::createFromFileObject(new \SplTempFileObject());
+        $csv->insertOne(['Nome do produto', 'Descrição', 'Preço', 'Cadastrado em']);
+        foreach($products as $product)
+        {
+            $csv->insertOne([
+                $product->name, 
+                $product->description,
+                $product->price,
+                $product->created_at,
+            ]);
+        }
+
+        $csv->output('produtos_'.Carbon::now().'.csv');
+        
     }
 }

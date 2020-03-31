@@ -18,10 +18,12 @@ class UserController extends Controller
         try {
             if (! $token = JWTAuth::attempt($credentials)) 
             {
+                session(['status' => 'A combinação de usuário e senha não foi encontrada']);
                 return view('login', ['status' => 'A combinação de usuário e senha não foi encontrada']);
             }
         } catch (JWTException $e) {
-            return view('login', ['status' => 'Erro: não foi possível criar o token']);
+            session(['status' => 'Não foi possível criar o token']);
+            return view('login', ['status' => 'Não foi possível criar o token']);
         }
         
         // Vai um cookie? Define um cookie com o token com validade de 10 minutos acessado apenas por http

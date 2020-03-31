@@ -14,11 +14,12 @@
         </div>
         <div class="col-md-4">
         <h2>Impressão de dados</h2>
-        <p>Você pode imprimir qualquer página acessada! É só utilizar o botão Imprimir que você encontra embaixo do conteúdo em todas as páginas</p>
+        <p>Você pode imprimir <a href="#" data-toggle="tooltip" title="It's not a bug, it's a feature!">qualquer página</a> acessada! É só utilizar o botão Imprimir que você encontra embaixo do conteúdo em todas as páginas</p>
         </div>
         <div class="col-md-4">
-        <h2>Head 3</h2>
-        <p></p>
+        <h2>Exportar dados</h2>
+        <p>Você também pode exportar os dados para um arquivo no formato CSV.</p>
+        <p>Acesse a entidade que você deseja no menu e .</p>
         <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
         </div>
     </div>
@@ -36,8 +37,11 @@
             document.getElementById('navbar').classList.remove('bg-light')
             document.getElementById('navbar').classList.add('bg-dark')    
         }, 200);
-        
-        
     }
+</script>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
 @endsection

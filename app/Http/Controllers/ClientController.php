@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Entities\Client;
 use Illuminate\Http\Request;
+use League\Csv\Writer;
+use Carbon\Carbon;
 
 class ClientController extends Controller
 {
@@ -52,7 +54,7 @@ class ClientController extends Controller
      * @param  \App\Entities\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($client)
     {
         return redirect()->action('ClientController@index');
     }
@@ -95,5 +97,26 @@ class ClientController extends Controller
         $client->delete();
 
         return $client;
+    }
+
+    public function export()
+    {
+        $clients = Client::all();
+        
+        $csv = Writer::createFromFileObject(new \SplTempFileObject());
+        $csv->insertOne(['Nome do cliente', 'Endereço', 'Telefone', 'Email', 'Data do cadastro']);
+        foreach($clients as $client)
+        {
+            $csv->insertOne([
+                $client->name, 
+                $client->address, 
+                $client->phone,
+                $client->email,
+                $client->created_at,
+            ]);
+        }
+
+        $csv->output('clientes_'.Carbon::now().'.csv');
+        
     }
 }
