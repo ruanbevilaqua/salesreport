@@ -6,6 +6,9 @@
 
 
 <body style="background-color: #e7e7e7;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <a class="navbar-brand" href="{{ url('/login') }}">Salesreport</a>
+</nav>
 <div class="container center" style="margin-top: 100px">
 
     @if(session('status'))
@@ -13,17 +16,17 @@
     {{ session()->pull('status') }}
     </div>
     @endif
-    <form action="{{ url('/api/login') }}" method="post" >
-        <div>
+    <form class="" action="{{ url('/api/login') }}" method="post" >
+        <div class="form-group">
             <span>Email</span>
-            <input type="text" name="email">
+            <input class="form-control" type="text" name="email">
         </div>
-        <div>
+        <div class="form-group">
             <span>Senha</span>
-            <input type="password" name="password">
+            <input class="form-control" type="password" name="password">
         </div>
         <div>
-            <input type="submit">
+            <input class="btn btn-primary" type="submit" value="Login">
         </div>
     </form>
 </div>

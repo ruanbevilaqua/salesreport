@@ -45,4 +45,4 @@ Pull requests são sempre bem vindos.
 
 ## Quero ver isso funcionando
 
-Você pode acessar a aplicação rodando em <link> e utilizar o usuário "user@relatorio.com" e a senha "123456".
+Você pode acessar a aplicação ao vivo heroku! Acesse http://shielded-refuge-15984.herokuapp.com/ e utilize o usuário "user@relatorio.com.br" ou "adminer@jwtsystem.com" e a senha "123456".
