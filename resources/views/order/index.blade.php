@@ -17,7 +17,7 @@
             <td>{{ date_format($order->created_at, 'd/m/Y H:i') }}</td>
             <td>{{ $order->client->name }}</td>
             <td>{{ count($order->products) }}</td>
-            <td>{{ isset($order->payment->total_value) ? $order->payment->total_value : 'Sem informação de pagamento' }}</td>
+            <td>{{ isset($order->payment->total_value) ? 'R$ ' . number_format($order->payment->total_value, 2, ',', '.') . ' - ' . $order->payment->payment_type : 'Sem informação de pagamento' }}</td>
             <td><a class="btn btn-sm btn-primary" href="{{url('order/'.$order->id)}}">Visualizar detalhes</a></td>
         </tr>
     @endforeach

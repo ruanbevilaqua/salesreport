@@ -24,7 +24,7 @@ class UserController extends Controller
         }
         
         // Vai um cookie? Define um cookie com o token com validade de 10 minutos acessado apenas por http
-        return redirect()->route('welcome')->cookie('jwt', $token, 10, false, false, false, true);
+        return redirect()->route('welcome')->cookie('jwt', $token, 600, false, false, false, true);
 
     }
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Order;
+use App\Entities\Client;
+use App\Entities\Product;
+use App\Entities\Payment;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -26,7 +29,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order.create', [
+            'clients' => Client::all(),
+            'products' => Product::all(),
+        ]);
     }
 
     /**
@@ -37,9 +43,31 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = Order::create($request->all());
-        $orderWithDetails = Order::find($order->id)->with('client')->get();
-        return $orderWithDetails;
+        // dd($request->all());
+        
+        // $order = Order::create($request->all());
+        // Criar ordem com id do cliente
+        $order = Order::create(['client_id' => $request->client_id]);
+        // dd($order);
+        $total = 0;
+        if(isset($request->amount))
+        {
+            foreach($request->amount as $product_id => $n)
+            {
+                if($n > 0)
+                {
+                    for($i = 0; $i < $n; $i++)
+                    {
+                        $order->products()->attach($product_id);
+                        $total += Product::find($product_id)->price;
+                    }
+                }
+            } 
+        } 
+        $payment = Payment::create(['total_value' => $total, 'payment_type' => $request->payment_type]);
+        $order->payment_id = $payment->id;
+        $order->save();
+        return redirect()->action('OrderController@index');
     }
 
     /**
@@ -51,6 +79,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order = Order::where('id', $order->id)->with('client', 'products', 'payment')->get()->first();
+        // dd($order);
         return view('order.show', ['order' => $order]);
     }
 
@@ -93,4 +122,11 @@ class OrderController extends Controller
 
         return $order;
     }
+
+    public function export()
+    {
+        $orders = Order::with('products', 'payment', 'client')->orderBy('created_at')->get();
+        dd($orders);
+    }
+
 }
